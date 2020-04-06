@@ -82,11 +82,15 @@
 
                                 if($status == 'asesor1')
                                 {
-                                    $a = 'status1_bk';
-                                    $b = 'status1_k';
+                                $a = 'status1_bk';
+                                $b = 'status1_k';
+                                $c = 'komen1_bk';
+                                $d = 'komen1_k';
                                 } else {
-                                    $a = 'status2_bk';
-                                    $b = 'status2_k';
+                                $a = 'status2_bk';
+                                $b = 'status2_k';
+                                $c = 'komen2_bk';
+                                $d = 'komen2_k';
                                 }
                                 @endphp
                                 <div class="form-group">
@@ -103,7 +107,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="buktipenugasan_bebankerja_ket">Bukti Penugasan</label>
                                     <input type="text"
@@ -136,13 +140,13 @@
                                     class="btn btn-success" target="_blank">Lihat Dokumen</a>
 
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <div class=" form-group">
                                     <label for="jenis_kegiatan">Status</label>
                                     <select
                                         class="form-control{{ $errors->has('jenis_kegiatan') ? ' is-invalid' : '' }}"
                                         id="jenis_kegiatan" name="{{ $a }}">
-                                        <option>Pilih</option>
+                                        <option value="Belum diperiksa">Pilih</option>
                                         <option value="Terima">Terima</option>
                                         <option value="Tolak">Tolak</option>
                                         @if ($errors->has('jenis_kegiatan'))
@@ -151,6 +155,20 @@
                                         </span>
                                         @endif
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="komen">Komen</label>
+                                    <input type="text"
+                                        class="form-control{{ $errors->has('komen') ? ' is-invalid' : '' }}" id="komen"
+                                        name="{{$c}}"
+                                        value="{{ ($status == 'asesor1') ? $data->komen1_bk : $data->komen2_bk }}">
+                                    @if ($errors->has('komen'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('komen') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -167,7 +185,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="buktipenugasan_bebankerja_ket">Bukti Dokumen Kinerja</label>
                                     <input type="text"
@@ -200,13 +218,13 @@
                                     class="btn btn-success" target="_blank">Lihat Dokumen</a>
 
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <div class=" form-group">
                                     <label for="jenis_kegiatan">Status</label>
                                     <select
                                         class="form-control{{ $errors->has('jenis_kegiatan') ? ' is-invalid' : '' }}"
                                         id="jenis_kegiatan" name="{{ $b }}">
-                                        <option>Pilih</option>
+                                        <option value="Belum diperiksa">Pilih</option>
                                         <option value="Terima">Terima</option>
                                         <option value="Tolak">Tolak</option>
                                         @if ($errors->has('jenis_kegiatan'))
@@ -215,6 +233,20 @@
                                         </span>
                                         @endif
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="komen">Komen</label>
+                                    <input type="text"
+                                        class="form-control{{ $errors->has('komen') ? ' is-invalid' : '' }}" id="komen"
+                                        name="{{$d}}"
+                                        value="{{ ($status == 'asesor1') ? $data->komen1_k : $data->komen2_k }}">
+                                    @if ($errors->has('komen'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('komen') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
