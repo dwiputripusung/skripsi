@@ -162,11 +162,6 @@ class PendidikanController extends Controller
 
             })
 
-            ->addColumn('komen1_bk', function($data) {
-                return $data->pendidikan['komen1_bk'];
-
-            })
-
             ->addColumn('status2', function($data) {
                 if($data->status2 == 'Belum diperiksa'){
                     return 'Belum Diperiksa';

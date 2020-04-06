@@ -34,8 +34,7 @@
                                     <label for="nama_kegiatan">Nama Kegiatan</label>
                                     <input type="text"
                                         class="form-control{{ $errors->has('nama_kegiatan') ? ' is-invalid' : '' }}"
-                                        id="nama_kegiatan" value="{{ $data->nama_kegiatan }}"
-                                        readonly>
+                                        id="nama_kegiatan" value="{{ $data->nama_kegiatan }}" readonly>
                                     @if ($errors->has('nama_kegiatan'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('nama_kegiatan') }}</strong>
@@ -47,7 +46,8 @@
                                 @php
                                 if($data->jenis_kegiatan == 'A')
                                 {
-                                $jenis = 'Melaksanakan Perkuliahan/Turorial dan Membimbing, Menguji serta Menyelenggarakan Pendidikan di Laboratorium';
+                                $jenis = 'Melaksanakan Perkuliahan/Turorial dan Membimbing, Menguji serta
+                                Menyelenggarakan Pendidikan di Laboratorium';
                                 } elseif($data->jenis_kegiatan == 'B')
                                 {
                                 $jenis = 'Membimbing Seminar';
@@ -56,7 +56,8 @@
                                 $jenis = 'Membimbing Kuliah Kerja Nyata, Praktek Kerja Nyata, Praktek Kerja Lapangan';
                                 } elseif($data->jenis_kegiatan == 'D')
                                 {
-                                $jenis = 'Membimbing dan Ikut Membimbing dalam Menghasilkan Disertasi, Tesis, Skripsi, dan Laporan Akhir Studi';
+                                $jenis = 'Membimbing dan Ikut Membimbing dalam Menghasilkan Disertasi, Tesis, Skripsi,
+                                dan Laporan Akhir Studi';
                                 } elseif($data->jenis_kegiatan == 'E')
                                 {
                                 $jenis = 'Bertugas Sebagai Penguji pada Ujian Akhir';
@@ -86,11 +87,15 @@
 
                                 if($status == 'asesor1')
                                 {
-                                    $a = 'status1_bk';
-                                    $b = 'status1_k';
+                                $a = 'status1_bk';
+                                $b = 'status1_k';
+                                $c = 'komen1_bk';
+                                $d = 'komen1_k';
                                 } else {
-                                    $a = 'status2_bk';
-                                    $b = 'status2_k';
+                                $a = 'status2_bk';
+                                $b = 'status2_k';
+                                $c = 'komen2_bk';
+                                $d = 'komen2_k';
                                 }
                                 @endphp
                                 <div class="form-group">
@@ -107,12 +112,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="buktipenugasan_bebankerja_ket">Bukti Penugasan</label>
                                     <input type="text"
                                         class="form-control{{ $errors->has('buktipenugasan_bebankerja_ket') ? ' is-invalid' : '' }}"
-                                        id="buktipenugasan_bebankerja_ket" value="{{ $data->buktipenugasan_bebankerja_ket }}" readonly>
+                                        id="buktipenugasan_bebankerja_ket"
+                                        value="{{ $data->buktipenugasan_bebankerja_ket }}" readonly>
                                     @if ($errors->has('buktipenugasan_bebankerja_ket'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('buktipenugasan_bebankerja_ket') }}</strong>
@@ -125,8 +131,7 @@
                                     <label for="sks_bebankerja">SKS Beban Kerja</label>
                                     <input type="text"
                                         class="form-control{{ $errors->has('sks_bebankerja') ? ' is-invalid' : '' }}"
-                                        id="sks_bebankerja" value="{{ $data->sks_bebankerja }}"
-                                        readonly>
+                                        id="sks_bebankerja" value="{{ $data->sks_bebankerja }}" readonly>
                                     @if ($errors->has('sks_bebankerja'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('sks_bebankerja') }}</strong>
@@ -140,13 +145,13 @@
                                     class="btn btn-success" target="_blank">Lihat Dokumen</a>
 
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <div class=" form-group">
                                     <label for="jenis_kegiatan">Status</label>
                                     <select
                                         class="form-control{{ $errors->has('jenis_kegiatan') ? ' is-invalid' : '' }}"
                                         id="jenis_kegiatan" name="{{ $a }}">
-                                        <option>Pilih</option>
+                                        <option value="Belum diperiksa">Pilih</option>
                                         <option value="Terima">Diterima</option>
                                         <option value="Tolak">Ditolak</option>
                                         @if ($errors->has('jenis_kegiatan'))
@@ -157,22 +162,25 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="komen">Komen</label>
+                                    <input type="text"
+                                        class="form-control{{ $errors->has('komen') ? ' is-invalid' : '' }}" id="komen"
+                                        name="{{$c}}"
+                                        value="{{ ($status == 'asesor1') ? $data->komen1_bk : $data->komen2_bk }}">
+                                    @if ($errors->has('komen'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('komen') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="komen">Komen</label>
-                            <input type="text"
-                                class="form-control{{ $errors->has('komen') ? ' is-invalid' : '' }}"
-                                id="komen" name="komen" value="{{ $data->komen }}">
-                            @if ($errors->has('komen'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('komen') }}</strong>
-                            </span>
-                            @endif
-                        </div>
+
                         <div class="form-group">
                             <label for="komen">Masa Penugasan</label>
-                            <input type="text"
-                                class="form-control{{ $errors->has('komen') ? ' is-invalid' : '' }}"
+                            <input type="text" class="form-control{{ $errors->has('komen') ? ' is-invalid' : '' }}"
                                 id="komen" value="{{ $data->masa_penugasan }}" readonly>
                             @if ($errors->has('komen'))
                             <span class="invalid-feedback" role="alert">
@@ -182,12 +190,13 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="buktipenugasan_bebankerja_ket">Bukti Dokumen Kinerja</label>
                                     <input type="text"
                                         class="form-control{{ $errors->has('buktipenugasan_bebankerja_ket') ? ' is-invalid' : '' }}"
-                                        id="buktipenugasan_bebankerja_ket" value="{{ $data->buktidokumen_kinerja_ket }}" readonly>
+                                        id="buktipenugasan_bebankerja_ket" value="{{ $data->buktidokumen_kinerja_ket }}"
+                                        readonly>
                                     @if ($errors->has('buktipenugasan_bebankerja_ket'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('buktipenugasan_bebankerja_ket') }}</strong>
@@ -200,8 +209,7 @@
                                     <label for="sks_bebankerja">SKS Beban Kerja</label>
                                     <input type="text"
                                         class="form-control{{ $errors->has('sks_bebankerja') ? ' is-invalid' : '' }}"
-                                        id="sks_bebankerja" value="{{ $data->sks_kinerja }}"
-                                        readonly>
+                                        id="sks_bebankerja" value="{{ $data->sks_kinerja }}" readonly>
                                     @if ($errors->has('sks_bebankerja'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('sks_bebankerja') }}</strong>
@@ -211,17 +219,17 @@
                             </div>
                             <div class="col-sm-2">
                                 <label for="buktipenugasan_bebankerja">Periksa</label> <br>
-                                <a href="{{ asset('upload/'.$data->buktidokumen_kinerja.'')}}"
-                                    class="btn btn-success" target="_blank">Lihat Dokumen</a>
+                                <a href="{{ asset('upload/'.$data->buktidokumen_kinerja.'')}}" class="btn btn-success"
+                                    target="_blank">Lihat Dokumen</a>
 
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-2">
                                 <div class=" form-group">
                                     <label for="jenis_kegiatan">Status</label>
                                     <select
                                         class="form-control{{ $errors->has('jenis_kegiatan') ? ' is-invalid' : '' }}"
                                         id="jenis_kegiatan" name="{{ $b }}">
-                                        <option>Pilih</option>
+                                        <option value="Belum diperiksa">Pilih</option>
                                         <option value="Terima">Diterima</option>
                                         <option value="Tolak">Ditolak</option>
                                         @if ($errors->has('jenis_kegiatan'))
@@ -230,6 +238,20 @@
                                         </span>
                                         @endif
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="komen">Komen</label>
+                                    <input type="text"
+                                        class="form-control{{ $errors->has('komen') ? ' is-invalid' : '' }}" id="komen"
+                                        name="{{$d}}"
+                                        value="{{ ($status == 'asesor1') ? $data->komen1_k : $data->komen2_k }}">
+                                    @if ($errors->has('komen'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('komen') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
