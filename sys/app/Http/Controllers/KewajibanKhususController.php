@@ -328,7 +328,7 @@ class KewajibanKhususController extends Controller
     public function datatable()
     {
         
-        $data = kewajiban_khusus::all();
+        $data = kewajiban_khusus::where('dosen_id', Auth::guard('dosen')->user()->id)->get();
 
         return Datatables::of($data)
         ->addColumn('action', function($data) {
@@ -351,7 +351,12 @@ class KewajibanKhususController extends Controller
                 }
         })
         ->addColumn('komen', function($data) {
-            return $data->kewajiban_khusus['komen'];
+            if($data->komen == null)
+            {
+                return '-';
+            } else {
+                return $data->komen;
+            }
         })
 
         ->addIndexColumn()->make(true);
@@ -359,8 +364,8 @@ class KewajibanKhususController extends Controller
 
     public function datatable_kewajiban_khusus_asesor()
     {
-        $asesor = Auth::guard('dosen')->user()->id;
-        $data = kewajiban_khusus::all();
+        $asesor = Asesor::select('dosen_id')->where('asesor1_id', Auth::guard('dosen')->user()->id)->get();
+        $data = kewajiban_khusus::whereIn('dosen_id', $asesor)->get();
 
         return Datatables::of($data)
         ->addColumn('action', function($data) {
@@ -383,7 +388,12 @@ class KewajibanKhususController extends Controller
         })
 
         ->addColumn('komen', function($data) {
-            return $data->kewajiban_khusus['komen'];
+            if($data->komen == null)
+            {
+                return '-';
+            } else {
+                return $data->komen;
+            }
         })
 
         ->addIndexColumn()->make(true);

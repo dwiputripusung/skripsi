@@ -732,6 +732,7 @@
                                         @endif
                                     </select>
                             </div>
+                            <div style="display: none;" id="komentar">
                             <div class="form-group">
                                 <label for="komen">Komen</label>
                                 <input type="text"
@@ -742,6 +743,7 @@
                                     <strong>{{ $errors->first('komen') }}</strong>
                                 </span>
                                 @endif
+                            </div>
                             </div>
                     </div>
             </div>
@@ -760,3 +762,20 @@
 </section>
 <!-- /.content -->
 @endsection
+
+@section('js')
+<script type="text/javascript">
+    // #Select_id == Id Select jenis karya
+    $('#status').change(function () {
+        var j = $(this).val();
+        var a = document.getElementById("komentar");
+        if (j == 'Tolak') {
+            a.style.display = "block";
+        } else {
+            a.style.display = "none";
+        }
+    })
+
+</script>
+@endsection
+
